@@ -22,7 +22,6 @@ spec:
         app: {{ template "consul.name" . }}
         release: {{ .Release.Name }}
     spec:
-      hostname: {{ template "consul.name" . }}
       terminationGracePeriodSeconds: 10
       securityContext:
         fsGroup: 1000

@@ -3,11 +3,11 @@ entries:
   consul:
   - apiVersion: v1
     appVersion: 1.2.2
-    created: 2018-08-24T15:28:55.927483947-03:00
+    created: 2018-08-24T15:31:41.453091308-03:00
     description: Consul Server Configuration
     digest: 2eca7228dbc9645925fa626c2d69a8b3b360fed2649a432ec3304dcff8559163
     name: consul
     urls:
     - consul-0.1.0.tgz
     version: 0.1.0
-generated: 2018-08-24T15:28:55.926894644-03:00
+generated: 2018-08-24T15:31:41.451878293-03:00

@@ -51,7 +51,7 @@ spec:
             - "-retry-join={{ $serviceName }}-{{ $i }}.{{ $serviceName }}.$(NAMESPACE).svc.cluster.local"
             {{- end }}
             - "-client=0.0.0.0"
-            - "-datacenter={{ .Values.consul.datacenter | default 'dc1' }}"
+            - "-datacenter={{ .Values.consul.datacenter | default "dc1" }}"
             - "-data-dir=/consul/data"
             - "-domain=cluster.local"
             - "-server"

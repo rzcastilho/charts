@@ -43,7 +43,6 @@ spec:
               value: "true"
           args:
             {{- $serviceName := .Values.service.name }}
-            {{- $datacenter := .Values.consul.datacenter | default "dc1" }}
             - "agent"
             - "-advertise=$(POD_IP)"
             - "-bind=0.0.0.0"
@@ -52,7 +51,7 @@ spec:
             - "-retry-join={{ $serviceName }}-{{ $i }}.{{ $serviceName }}.$(NAMESPACE).svc.cluster.local"
             {{- end }}
             - "-client=0.0.0.0"
-            - "-datacenter={{ $datacenter }}"
+            - "-datacenter={{ .Values.consul.datacenter | default "dc1" }}"
             - "-data-dir=/consul/data"
             - "-domain=cluster.local"
             - "-server"

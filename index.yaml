@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  consul:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2018-08-24T14:58:36.072772388-03:00
+    description: Consul Server Configuration
+    digest: e576655e6ce81619be5dd6a3487ed16db34fb108a45046d26ad2bc874e12c481
+    name: consul
+    urls:
+    - consul-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-08-24T14:58:36.070872059-03:00

@@ -27,6 +27,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: {{ template "consul.name" . }}
+          hostname: {{ template "consul.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           resources:
 {{ toYaml .Values.resources | indent 12 }}

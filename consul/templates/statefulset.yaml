@@ -12,7 +12,7 @@ spec:
     matchLabels:
       app: {{ template "consul.name" . }}
       release: {{ .Release.Name }}
-  serviceName: {{ template "consul.name" . }}
+  serviceName: {{ .Values.service.name }}
   replicas: {{ .Values.replicaCount | len }}
   updateStrategy:
     type: RollingUpdate

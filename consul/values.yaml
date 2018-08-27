@@ -1,4 +1,4 @@
-# Default values for consul-server.
+# Default values for consul.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -9,7 +9,7 @@ replicaCount:
   - 0
 
 storage:
-  className: managed-nfs-storage
+  # className: managed-nfs-storage
   size: 1Gi
 
 livenessProbe:
@@ -61,19 +61,6 @@ service:
       protocol: TCP
       port: 8600
       targetPort: consuldns
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

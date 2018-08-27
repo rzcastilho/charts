@@ -21,11 +21,11 @@ $ helm install -n consul-server --set consul.datacenter=dev1 rzcastilho/consul
 **Install**
 
 ```
-$ helm install -n consul-server rzcastilho/consul
+$ helm install -n consul-server -f https://raw.githubusercontent.com/rzcastilho/charts/master/consul/values-production.yaml rzcastilho/consul
 ```
 
 **Install with custom Datacenter name**
 
 ```
-$ helm install -n consul-server --set consul.datacenter=dev1 rzcastilho/consul
+$ helm install -n consul-server -f https://raw.githubusercontent.com/rzcastilho/charts/master/consul/values-production.yaml --set consul.datacenter=aws rzcastilho/consul
 ```

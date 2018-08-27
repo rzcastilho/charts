@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name:  {{ template "consul.fullname" . }}
+  name: {{ .Release.Name }}
   labels:
     app: {{ template "consul.name" . }}
     chart: {{ template "consul.chart" . }}

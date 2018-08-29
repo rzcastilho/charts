@@ -1,0 +1,62 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ template "rabbitmq.name" . }}
+    chart: {{ template "rabbitmq.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "rabbitmq.name" . }}
+      release: {{ .Release.Name }}
+  serviceName: {{ .Values.service.name }}
+  replicas: {{ .Values.replicaCount | len }}
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ template "rabbitmq.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "rabbitmq.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+            - name: rabbit-data
+              mountPath: /var/lib/rabbitmq
+            - name: rabbit-config
+              mountPath: /etc/rabbitmq
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .port }}
+              protocol: {{ .protocol }}
+            {{- end }}
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.livenessProbe.tcpSocket.port }}
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 3
+      volumes:
+        - name: rabbit-config
+          configMap:
+            name: {{ .Release.Name }}
+  volumeClaimTemplates:
+    - metadata:
+        name: rabbit-data
+      spec:
+        {{- if .Values.storage.className}}
+        storageClassName: {{ .Values.storage.className }}
+        {{- end}}
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.storage.size }}

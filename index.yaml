@@ -3,11 +3,31 @@ entries:
   consul:
   - apiVersion: v1
     appVersion: 1.2.2
-    created: 2018-08-24T15:31:41.453091308-03:00
-    description: Consul Server Configuration
-    digest: 2eca7228dbc9645925fa626c2d69a8b3b360fed2649a432ec3304dcff8559163
+    created: 2018-08-29T08:41:54.574398736-03:00
+    description: Consul Server Chart
+    digest: 8a7bd68fcb41c9c9398c79d99e0f966a42cc74a785b09a3df91f34990a4873e8
     name: consul
     urls:
     - consul-0.1.0.tgz
     version: 0.1.0
-generated: 2018-08-24T15:31:41.451878293-03:00
+  mongodb:
+  - apiVersion: v1
+    appVersion: "3.4"
+    created: 2018-08-29T08:41:54.574725066-03:00
+    description: MongoDB Chart
+    digest: 15166a7ca1b48251cf6be6bc1f32bc1b5968dfbf8d948a9b607a8f5b1ed8e59c
+    name: mongodb
+    urls:
+    - mongodb-0.1.0.tgz
+    version: 0.1.0
+  rabbitmq:
+  - apiVersion: v1
+    appVersion: "3.6"
+    created: 2018-08-29T08:41:54.575055885-03:00
+    description: RabbitMQ Chart
+    digest: f79b3356a3e7b939bb69b01e32d8392390728cc7ad2603a7eb06bf7424a18a75
+    name: rabbitmq
+    urls:
+    - rabbitmq-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-08-29T08:41:54.573771882-03:00

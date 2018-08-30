@@ -23,13 +23,12 @@ image:
   pullPolicy: Always
 
 service:
-  name: mongodb
   type: ClusterIP
   ports:
-    - name: mongodb
+    - name: tcp
       protocol: TCP
       port: 27017
-      targetPort: http
+      targetPort: tcp
 
 resources:
   limits:

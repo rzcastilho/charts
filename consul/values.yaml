@@ -22,7 +22,6 @@ image:
   pullPolicy: Always
 
 service:
-  name: consul-server
   type: ClusterIP
   ports:
     - name: http

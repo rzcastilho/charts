@@ -1,5 +1,4 @@
 apiVersion: v1
-appVersion: "1.2.2"
 description: Consul Server Chart
 name: consul
 version: 0.1.0

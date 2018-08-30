@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ template "consul.fullname" . }}
   labels:
     app: {{ template "consul.name" . }}
     chart: {{ template "consul.chart" . }}
@@ -12,7 +12,7 @@ spec:
     matchLabels:
       app: {{ template "consul.name" . }}
       release: {{ .Release.Name }}
-  serviceName: {{ .Values.service.name }}
+  serviceName: {{ template "consul.fullname" . }}
   replicas: {{ .Values.replicaCount | len }}
   updateStrategy:
     type: RollingUpdate

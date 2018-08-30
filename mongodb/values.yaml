@@ -23,13 +23,12 @@ image:
   pullPolicy: Always
 
 service:
-  name: mongodb
   type: ClusterIP
   ports:
-    - name: mongodb
+    - name: tcp
       protocol: TCP
       port: 27017
-      targetPort: http
+      targetPort: tcp
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

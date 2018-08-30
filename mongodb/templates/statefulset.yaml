@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ template "mongodb.fullname" . }}
   labels:
     app: {{ template "mongodb.name" . }}
     chart: {{ template "mongodb.chart" . }}
@@ -12,7 +12,7 @@ spec:
     matchLabels:
       app: {{ template "mongodb.name" . }}
       release: {{ .Release.Name }}
-  serviceName: {{ .Values.service.name }}
+  serviceName: {{ template "mongodb.fullname" . }}
   replicas: {{ .Values.replicaCount | len }}
   updateStrategy:
     type: RollingUpdate

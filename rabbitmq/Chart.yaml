@@ -1,5 +1,4 @@
 apiVersion: v1
-appVersion: "3.6"
 description: RabbitMQ Chart
 name: rabbitmq
 version: 0.1.0

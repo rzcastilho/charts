@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ template "rabbitmq.fullname" . }}
   labels:
     app: {{ template "rabbitmq.name" . }}
     chart: {{ template "rabbitmq.chart" . }}
@@ -12,7 +12,7 @@ spec:
     matchLabels:
       app: {{ template "rabbitmq.name" . }}
       release: {{ .Release.Name }}
-  serviceName: {{ .Values.service.name }}
+  serviceName: {{ template "rabbitmq.fullname" . }}
   replicas: {{ .Values.replicaCount | len }}
   updateStrategy:
     type: RollingUpdate

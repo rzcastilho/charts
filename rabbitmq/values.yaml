@@ -19,14 +19,13 @@ image:
   pullPolicy: Always
 
 service:
-  name: rabbitmq
   type: ClusterIP
   ports:
     - name: amqp
       protocol: TCP
       port: 5672
-      targetPort: http
-    - name: manager
+      targetPort: amqp
+    - name: http
       protocol: TCP
       port: 15672
       targetPort: http

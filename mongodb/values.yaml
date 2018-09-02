@@ -11,7 +11,7 @@ replicaCount:
 
 storage:
   # className: managed-nfs-storage
-  size: 1Gi
+  size: 5Gi
 
 livenessProbe:
   tcpSocket:

@@ -23,7 +23,7 @@ data:
     #  mmapv1:
       wiredTiger:
         engineConfig:
-          cacheSizeGB: {{ .Values.application.name | default "5" }}
+          cacheSizeGB: {{ .Values.application.name | default "2" }}
 
     # where to write logging data.
     systemLog:

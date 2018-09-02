@@ -22,6 +22,15 @@ spec:
         app: {{ template "rabbitmq.name" . }}
         release: {{ .Release.Name }}
     spec:
+      initContainers:
+        - name: configure-plugins
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ['sh', '-c',
+'cp /plugins/*.* /tmp/plugins && wget https://dl.bintray.com/rabbitmq/community-plugins/3.6.x/rabbitmq_delayed_message_exchange/rabbitmq_delayed_message_exchange-20171215-3.6.x.zip && unzip rabbitmq_delayed_message_exchange-20171215-3.6.x.zip && cp rabbitmq_delayed_message_exchange-20171215-3.6.x.ez
+ /tmp/plugins']
+          volumeMounts:
+            - name: rabbit-plugins
+              mountPath: /tmp/plugins
       containers:
         - name: {{ template "rabbitmq.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -32,6 +41,8 @@ spec:
               mountPath: /var/lib/rabbitmq
             - name: rabbit-config
               mountPath: /etc/rabbitmq
+            - name: rabbit-plugins
+              mountPath: /opt/rabbitmq/plugins
           ports:
             {{- range .Values.service.ports }}
             - name: {{ .name }}
@@ -52,11 +63,22 @@ spec:
     - metadata:
         name: rabbit-data
       spec:
-        {{- if .Values.storage.className}}
-        storageClassName: {{ .Values.storage.className }}
+        {{- if .Values.storage.data.className}}
+        storageClassName: {{ .Values.storage.data.className }}
         {{- end}}
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
-            storage: {{ .Values.storage.size }}
+            storage: {{ .Values.storage.data.size }}
+    - metadata:
+        name: rabbit-plugins
+      spec:
+        {{- if .Values.storage.plugins.className}}
+        storageClassName: {{ .Values.storage.plugins.className }}
+        {{- end}}
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.storage.plugins.size }}
